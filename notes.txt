@@ -1,0 +1,15 @@
+-- Back
+
+- (X) getAllBillsToPay
+- (X) getBillToPayByID
+- (X) insertBillsToPay
+- () updateBillsToPay
+- () deleteBillsToPay
+
+-- Front
+
+- (X) getAllBillsToPay
+- (X) getBillToPayByID
+- (X) insertBillsToPay
+- () updateBillsToPay
+- () deleteBillsToPay

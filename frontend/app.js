@@ -10,7 +10,7 @@ const session = require('express-session');
 require('dotenv').config();
 
 var indexRouter = require('./routes/index');
-var paymentsToReceiveRouter = require('./routes/rte_paymentsToReceive');
+var billsToPayRouter = require('./routes/rte_billsToPay');
 
 var app = express();
 
@@ -37,7 +37,7 @@ app.use(
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/pagamentos-receber',  paymentsToReceiveRouter);
+app.use('/contas-pagar',  billsToPayRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

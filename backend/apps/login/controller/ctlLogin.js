@@ -10,8 +10,9 @@ const Login = async (req, res, next) => {
 
     if (bCrypt.compareSync(req.body.password, credencial[0].password)) {
         //auth ok
+        const userId = credencial[0].id;
         const username = credencial[0].username;
-        const token = jwt.sign({ username }, process.env.SECRET_API, {
+        const token = jwt.sign({ userId, username }, process.env.SECRET_API, {
             expiresIn: 600, // expires in 10min
         });
         return res.json({ auth: true, token: token });
@@ -36,7 +37,7 @@ function AutenticaJWT(req, res, next) {
                 .status(200)
                 .json({ auth: false, message: "JWT inválido ou expirado" });
 
-        req.userId = decoded.id;
+        req.userId = decoded.userId;
         next();
     });
 }

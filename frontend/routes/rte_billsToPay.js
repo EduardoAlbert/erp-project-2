@@ -1,5 +1,5 @@
 var express = require("express");
-var paymentsToReceiveApp = require("../app/paymentsToReceive/controller/ctlPaymentsToReceive");
+var billsToPayApp = require("../app/billsToPay/controller/ctlBillsToPay");
 
 var router = express.Router();
 
@@ -15,37 +15,37 @@ function authenticationMiddleware(req, res, next) {
 router.get(
     "/",
     authenticationMiddleware,
-    paymentsToReceiveApp.getAllPaymentsToReceive
+    billsToPayApp.getAllBillsToPay
 );
 router.get(
     "/inserir",
     authenticationMiddleware,
-    paymentsToReceiveApp.openPaymentsToReceiveInsert
+    billsToPayApp.openBillsToPayInsert
 );
 router.get(
     "/atualizar/:id",
     authenticationMiddleware,
-    paymentsToReceiveApp.openPaymentsToReceiveUpdate
+    billsToPayApp.openBillsToPayUpdate
 );
 router.post(
     "/inserir",
     authenticationMiddleware,
-    paymentsToReceiveApp.insertPaymentsToReceive
+    billsToPayApp.insertBillsToPay
 );
 router.post(
     "/getDados",
     authenticationMiddleware,
-    paymentsToReceiveApp.getDados
+    billsToPayApp.getDados
 );
 router.post(
     "/atualizar",
     authenticationMiddleware,
-    paymentsToReceiveApp.updatePaymentsToReceives
+    billsToPayApp.updateBillsToPays
 );
 router.post(
     "/deletar",
     authenticationMiddleware,
-    paymentsToReceiveApp.deletePaymentsToReceives
+    billsToPayApp.deleteBillsToPays
 );
 
 module.exports = router;

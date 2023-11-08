@@ -1,4 +1,4 @@
-CREATE DATABASE 'ERP'
+CREATE DATABASE 'ERP2'
     WITH
     OWNER = postgres
     ENCODING = 'UTF8'
@@ -19,10 +19,12 @@ INSERT INTO users VALUES
     (default, 'john', crypt('john', gen_salt('bf')))
 ON CONFLICT DO NOTHING;
 
-CREATE TABLE IF NOT EXISTS payments_to_receive (
-    id bigserial constraint pk_payments_to_receive PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS bills_to_pay (
+    id bigserial constraint pk_bills_to_pay PRIMARY KEY,
+    user_id INT,
     description VARCHAR(60),
     amount DECIMAL,
     due_date DATE,
-    removed boolean DEFAULT false
+    removed boolean DEFAULT false,
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users (id)
 );

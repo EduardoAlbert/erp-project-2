@@ -15,11 +15,11 @@
                 <div class="card mb-4">
                     <div class="col-2 ms-1 mt-1 mb-2">
                         <button type="button" class="btn btn-primary"
-                            onclick="window.location.href = '/pagamentos-receber/inserir'">Novo pagamento</button>
+                            onclick="window.location.href = '/contas-pagar/inserir'">Nova conta</button>
                     </div>
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
-                        Listagem de pagamentos a receber
+                        Listagem de contas a pagar
                     </div>
 
 
@@ -34,9 +34,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @model.data.paymentsToReceive.forEach(function(registro){
+                                @model.data.billsToPay.forEach(function(registro){
                                 <tr>                                    
-                                    <td><a href="/pagamentos-receber/atualizar/@registro.id" class="btn btn-info btn-sm"><i
+                                    <td><a href="/contas-pagar/atualizar/@registro.id" class="btn btn-info btn-sm"><i
                                         class="fa fa-magnifying-glass"></i>Visualizar</a></td>
                                     <td>@registro.due_date</td>
                                     <td>@registro.amount</td>

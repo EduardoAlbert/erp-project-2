@@ -64,7 +64,7 @@
               Remover
             </button>
 
-            <button type="button" class="btn btn-primary" onclick="window.location.href = '/pagamentos-receber'" id="btnFechar">
+            <button type="button" class="btn btn-primary" onclick="window.location.href = '/contas-pagar'" id="btnFechar">
               Fechar
             </button>
           </div>
@@ -115,7 +115,7 @@
 
     try {
       const resp = await axios.post(
-        "/pagamentos-receber/getDados", {
+        "/contas-pagar/getDados", {
           idBusca: idBuscaPar
         }, {
           headers: {
@@ -147,7 +147,7 @@
         alert("Houve erro ao buscar os dados dos alunos!");
       }
     } catch (error) {
-      alert("[view_PagamentosReceber|getDados]Ocorreu um erro inesperado!" + error);
+      alert("[view_ContasPagar|getDados]Ocorreu um erro inesperado!" + error);
     }
   }
 
@@ -181,7 +181,7 @@
     }
 
     try {
-      resp = await axios.post("/pagamentos-receber/inserir", formData, {
+      resp = await axios.post("/contas-pagar/inserir", formData, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -194,7 +194,7 @@
         alert("Houve um erro: " + resp.data.mensagem);
       }
     } catch (error) {
-      alert("[view_cadPagamentosReceber|btnSalvar]Ocorreu um erro inesperado!" + error);
+      alert("[view_cadContasPagar|btnSalvar]Ocorreu um erro inesperado!" + error);
     }
   }
 
@@ -229,7 +229,7 @@
     }
 
     try {
-      resp = await axios.post("/pagamentos-receber/atualizar", formData, {
+      resp = await axios.post("/contas-pagar/atualizar", formData, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -237,12 +237,12 @@
 
       if (resp.data.status == "ok") {
         alert(resp.data.mensagem);
-        window.open("/pagamentos-receber/atualizar/" + String($("#id").val()), "_self");
+        window.open("/contas-pagar/atualizar/" + String($("#id").val()), "_self");
       } else {
         alert("Houve um erro: " + resp.data.mensagem);
       }
     } catch (error) {
-      alert("[view_cadPagamentosReceber|btnSalvarAlteracao]Ocorreu um erro inesperado!" + error);
+      alert("[view_cadContasPagar|btnSalvarAlteracao]Ocorreu um erro inesperado!" + error);
     }
 
 
@@ -250,10 +250,10 @@
 
   //@ Cancela a alteração
   async function btnCancelarAlteracao() {
-    window.open("/pagamentos-receber/atualizar/" + String($("#id").val()), "_self");
+    window.open("/contas-pagar/atualizar/" + String($("#id").val()), "_self");
   }
 
-  //@ Remove pagamento a receber
+  //@ Remove conta a pagar
   async function btnRemover() { 
 
     var confirma = confirm("Deseja realmente remover o registro?");
@@ -263,7 +263,7 @@
     const formData = new FormData(form);
 
     try {
-      resp = await axios.post("/pagamentos-receber/deletar", {
+      resp = await axios.post("/contas-pagar/deletar", {
         id: formData.get("id")
       }, {
         headers: {
@@ -273,12 +273,12 @@
 
       if (resp.data.status == "ok") {
         alert(resp.data.mensagem);
-        window.open("/pagamentos-receber", "_self");
+        window.open("/contas-pagar", "_self");
       } else {
         alert("Houve um erro: " + resp.data.mensagem);
       }
     } catch (error) {
-      alert("[view_cadPagamentosReceber|btnRemover]Ocorreu um erro inesperado!" + error);
+      alert("[view_cadContasPagar|btnRemover]Ocorreu um erro inesperado!" + error);
     }
   }
 

@@ -1,31 +1,33 @@
 const db = require("../../../database/databaseconfig");
 
-const getAllPaymentsToReceive = async () => {
+const getAllBillsToPay = async (userId) => {
     return (
         await db.query(
-            "SELECT * FROM payments_to_receive WHERE removed = false ORDER BY due_date ASC"
+            "SELECT * FROM bills_to_pay WHERE user_id = $1 AND removed = false ORDER BY due_date ASC",
+            [userId]
         )
     ).rows;
 };
 
-const getPaymentToReceiveByID = async (paymentToReceiveIDPar) => {
+const getBillToPayByID = async (userId, billToPayIDPar) => {
     return (
         await db.query(
-            "SELECT * FROM payments_to_receive WHERE id = $1 and removed = false",
-            [paymentToReceiveIDPar]
+            "SELECT * FROM bills_to_pay WHERE user_id = $1 AND id = $2 and removed = false",
+            [userId, billToPayIDPar]
         )
     ).rows;
 };
 
-const insertPaymentsToReceive = async (recordPar) => {
+const insertBillsToPay = async (userId, recordPar) => {
     let affectedRows;
     let msg = "ok";
     try {
         affectedRows = (
             await db.query(
-                "INSERT INTO payments_to_receive " +
-                    "values(default, $1, $2, $3, $4)",
+                "INSERT INTO bills_to_pay " +
+                    "values(default, $1, $2, $3, $4, $5)",
                 [
+                    userId,
                     recordPar.description,
                     recordPar.amount,
                     recordPar.due_date,
@@ -34,20 +36,20 @@ const insertPaymentsToReceive = async (recordPar) => {
             )
         ).rowCount;
     } catch (error) {
-        msg = "[mdlPaymentsToReceive|insertPaymentsToReceive] " + error.detail;
+        msg = "[mdlBillsToPay|insertBillsToPay] " + error.detail;
         affectedRows = -1;
     }
 
     return { msg, affectedRows };
 };
 
-const updatePaymentsToReceive = async (recordPar) => {
+const updateBillsToPay = async (recordPar) => {
     let affectedRows;
     let msg = "ok";
     try {
         affectedRows = (
             await db.query(
-                "UPDATE payments_to_receive SET " +
+                "UPDATE bills_to_pay SET " +
                     "description = $2, " +
                     "amount = $3, " +
                     "due_date = $4, " +
@@ -63,26 +65,26 @@ const updatePaymentsToReceive = async (recordPar) => {
             )
         ).rowCount;
     } catch (error) {
-        msg = "[mdlPaymentsToReceive|UpdatePaymentsToReceive] " + error.detail;
+        msg = "[mdlBillsToPay|UpdateBillsToPay] " + error.detail;
         affectedRows = -1;
     }
 
     return { msg, affectedRows };
 };
 
-const deletePaymentsToReceive = async (recordPar) => {
+const deleteBillsToPay = async (recordPar) => {
     let affectedRows;
     let msg = "ok";
 
     try {
         affectedRows = (
             await db.query(
-                "UPDATE payments_to_receive SET removed = true WHERE id = $1",
+                "UPDATE bills_to_pay SET removed = true WHERE id = $1",
                 [recordPar.id]
             )
         ).rowCount;
     } catch (error) {
-        msg = "[mdlPaymentsToReceive|DeletePaymentsToReceive] " + error.detail;
+        msg = "[mdlBillsToPay|DeleteBillsToPay] " + error.detail;
         affectedRows = -1;
     }
 
@@ -90,9 +92,9 @@ const deletePaymentsToReceive = async (recordPar) => {
 };
 
 module.exports = {
-    getAllPaymentsToReceive,
-    getPaymentToReceiveByID,
-    insertPaymentsToReceive,
-    updatePaymentsToReceive,
-    deletePaymentsToReceive,
+    getAllBillsToPay,
+    getBillToPayByID,
+    insertBillsToPay,
+    updateBillsToPay,
+    deleteBillsToPay,
 };

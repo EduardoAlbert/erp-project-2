@@ -2,7 +2,7 @@ const express = require("express");
 const routerApp = express.Router();
 
 const appLogin = require("../apps/login/controller/ctlLogin");
-const appPaymentsToReceive = require("../apps/paymentsToReceive/controller/ctlPaymentsToReceive");
+const appBillsToPay = require("../apps/billsToPay/controller/ctlBillsToPay");
 
 routerApp.use((req, res, next) => {
     next();
@@ -12,29 +12,29 @@ routerApp.post("/Login", appLogin.Login);
 routerApp.post("/Logout", appLogin.Logout);
 
 routerApp.get(
-    "/getAllPaymentsToReceive",
+    "/getAllBillsToPay",
     appLogin.AutenticaJWT,
-    appPaymentsToReceive.getAllPaymentsToReceive
+    appBillsToPay.getAllBillsToPay
 );
 routerApp.post(
-    "/getPaymentToReceiveByID",
+    "/getBillToPayByID",
     appLogin.AutenticaJWT,
-    appPaymentsToReceive.getPaymentToReceiveByID
+    appBillsToPay.getBillToPayByID
 );
 routerApp.post(
-    "/insertPaymentsToReceive",
+    "/insertBillsToPay",
     appLogin.AutenticaJWT,
-    appPaymentsToReceive.insertPaymentsToReceive
+    appBillsToPay.insertBillsToPay
 );
 routerApp.post(
-    "/updatePaymentsToReceive",
+    "/updateBillsToPay",
     appLogin.AutenticaJWT,
-    appPaymentsToReceive.updatePaymentsToReceive
+    appBillsToPay.updateBillsToPay
 );
 routerApp.post(
-    "/deletePaymentsToReceive",
+    "/deleteBillsToPay",
     appLogin.AutenticaJWT,
-    appPaymentsToReceive.deletePaymentsToReceive
+    appBillsToPay.deleteBillsToPay
 );
 
 module.exports = routerApp;
