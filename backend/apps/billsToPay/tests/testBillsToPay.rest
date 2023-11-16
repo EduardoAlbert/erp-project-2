@@ -1,0 +1,52 @@
+
+### Teste de buscar todas as contas a pagar
+GET http://localhost:40000/getAllBillsToPay HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJqb2huIiwiaWF0IjoxNzAwMDk1NzE5LCJleHAiOjE3MDAwOTYzMTl9.ZhYF1JQHPsDjVIvpxxJclHm3xU_5j8-wtGsdhrHCOgc
+
+{
+
+}
+
+### Teste de buscar conta a pagar por ID
+POST http://localhost:40000/getBillToPayByID HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJqb2huIiwiaWF0IjoxNzAwMDk1NzE5LCJleHAiOjE3MDAwOTYzMTl9.ZhYF1JQHPsDjVIvpxxJclHm3xU_5j8-wtGsdhrHCOgc
+
+{    
+    "id": 1
+}
+
+### Teste de inserção de conta a pagar
+POST http://localhost:40000/insertBillsToPay HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJqb2huIiwiaWF0IjoxNzAwMDk1NzE5LCJleHAiOjE3MDAwOTYzMTl9.ZhYF1JQHPsDjVIvpxxJclHm3xU_5j8-wtGsdhrHCOgc
+
+{    
+    "description": "Teste insert",
+    "amount": 10.5,
+    "due_date": "2023-10-15",
+    "removed": false    
+}
+
+### Teste de atualização de conta a pagar
+POST http://localhost:40000/updateBillsToPay HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJqb2huIiwiaWF0IjoxNzAwMDk1NzE5LCJleHAiOjE3MDAwOTYzMTl9.ZhYF1JQHPsDjVIvpxxJclHm3xU_5j8-wtGsdhrHCOgc
+
+{       
+    "id": 3,
+    "description": "Teste update 5774",
+    "amount": 55.5,
+    "due_date": "2023-10-18",
+    "removed": false   
+}
+
+### teste de deleção de conta a pagar
+POST http://localhost:40000/deleteBillsToPay HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJqb2huIiwiaWF0IjoxNzAwMDk1NzE5LCJleHAiOjE3MDAwOTYzMTl9.ZhYF1JQHPsDjVIvpxxJclHm3xU_5j8-wtGsdhrHCOgc
+
+{    
+    "id": 3
+}

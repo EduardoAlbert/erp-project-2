@@ -2,28 +2,26 @@
 <html lang="en">
 @html.include("header")
 
-<body>
-    <div class="login ">
-        <div class="card mx-auto col-lg-4 mt-5" style="background-color:lightblue;">
-            <div class="card mx-auto col-10  mt-5 mb-5">
-                <div class="card-body">
-                    <h4 class="card-title" style="text-align: center;">Login</h4>
-                    <form class="form-login" action="Login" method="POST">
-                        <label for="labelusername" class="form-label mt-4">Informe seu usuário</label>
-                        <input type="text" name="username" class="form-control" /><br />
-                        <label for="labelpassword" class="form-label mt-2">Informe seu password</label>
-                        <input type="password" name="password" class="form-control" /><br />
-                        <div class="text-center">
-                            <input class="btn btn-primary mt-4 mx-auto" type="submit" value="Login" />
-                        </div>
+<body class="bg-black">
+    <div class="login bg-black mt-5">
+        <div class="card mx-auto col-lg-4 mt-5 p-4">
+            <div class="card-body">
+                <h4 class="card-title" style="text-align: center;">Login</h4>
+                <form class="form-login" action="Login" method="POST">
+                    <label for="labelusername" class="form-label mt-4">Usuário</label>
+                    <input type="text" name="username" class="form-control" /><br />
+                    <label for="labelpassword" class="form-label mt-2">Senha</label>
+                    <input type="password" name="password" class="form-control" /><br />
+                    <div class="text-center">
+                        <input class="btn btn-primary mt-4 mx-auto" type="submit" value="Entrar" />
+                    </div>
 
-                        @if(model.message) {
-                        <p>
-                            <label style="color:Red"> @model.message </label>
-                        </p>
-                        }
-                    </form>
-                </div>
+                    @if(model.message) {
+                    <p>
+                        <label style="color:Red"> @model.message </label>
+                    </p>
+                    }
+                </form>
             </div>
         </div>
     </div>

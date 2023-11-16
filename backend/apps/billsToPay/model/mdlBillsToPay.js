@@ -43,20 +43,21 @@ const insertBillsToPay = async (userId, recordPar) => {
     return { msg, affectedRows };
 };
 
-const updateBillsToPay = async (recordPar) => {
+const updateBillsToPay = async (userId, recordPar) => {
     let affectedRows;
     let msg = "ok";
     try {
         affectedRows = (
             await db.query(
                 "UPDATE bills_to_pay SET " +
-                    "description = $2, " +
-                    "amount = $3, " +
-                    "due_date = $4, " +
-                    "removed = $5 " +
-                    "WHERE id = $1",
+                    "description = $3, " +
+                    "amount = $4, " +
+                    "due_date = $5, " +
+                    "removed = $6 " +
+                    "WHERE id = $1 AND user_id = $2",
                 [
                     recordPar.id,
+                    userId,
                     recordPar.description,
                     recordPar.amount,
                     recordPar.due_date,
@@ -72,15 +73,15 @@ const updateBillsToPay = async (recordPar) => {
     return { msg, affectedRows };
 };
 
-const deleteBillsToPay = async (recordPar) => {
+const deleteBillsToPay = async (userId, recordPar) => {
     let affectedRows;
     let msg = "ok";
 
     try {
         affectedRows = (
             await db.query(
-                "UPDATE bills_to_pay SET removed = true WHERE id = $1",
-                [recordPar.id]
+                "UPDATE bills_to_pay SET removed = true WHERE id = $1 AND user_id = $2",
+                [recordPar.id, userId]
             )
         ).rowCount;
     } catch (error) {

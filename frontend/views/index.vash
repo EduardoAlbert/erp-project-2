@@ -2,7 +2,7 @@
 
     @html.block('content', function(model){
 
-        <h3>Olá @model.title</h3>
+        <h3>Bem-vindo!</h3>
 
     })
 

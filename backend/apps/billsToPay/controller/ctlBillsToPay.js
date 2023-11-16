@@ -27,15 +27,17 @@ const insertBillsToPay = (req, res) =>
 
 const updateBillsToPay = (req, res) =>
   (async () => {
+    const userId = req.userId;
     const record = req.body;
-    let { msg, affectedRows } = await mdlBillsToPay.updateBillsToPay(record);
+    let { msg, affectedRows } = await mdlBillsToPay.updateBillsToPay(userId, record);
     res.json({ status: msg, affectedRows: affectedRows });
   })();
 
 const deleteBillsToPay = (req, res) =>
   (async () => {
+    const userId = req.userId;
     const record = req.body;
-    let { msg, affectedRows } = await mdlBillsToPay.deleteBillsToPay(record);
+    let { msg, affectedRows } = await mdlBillsToPay.deleteBillsToPay(userId, record);
     res.json({ status: msg, affectedRows: affectedRows });
   })();
 
